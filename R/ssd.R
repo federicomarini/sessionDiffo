@@ -1,12 +1,14 @@
-#' TODO
+#' Shiny up sessionDiffo
 #'
-#' TODO
+#' A mini Shiny app for comparing `sessionInfo` outputs
 #'
-#' @return TODO
+#' @return A Shiny app
 #' @export
 #'
 #' @examples
-#' # TODO
+#' if(interactive())
+#'   ssd()
+#' # and later upload the files/copy-paste the output in the editors directly
 ssd <- function() {
 
   ssd_ui <- fluidPage(
@@ -41,32 +43,50 @@ ssd <- function() {
       parse_si(file(input$file2$datapath))
     })
 
+    observeEvent(input$file1, {
+      shinyAce::updateAceEditor(
+        session, "s1editor", value = paste0(readLines(file(input$file1$datapath)), collapse = "\n")
+      )
+    })
+    observeEvent(input$file2, {
+      shinyAce::updateAceEditor(
+        session, "s2editor", value = paste0(readLines(file(input$file2$datapath)), collapse = "\n")
+      )
+    })
 
 
     observeEvent(input$compare_sis, {
-      req(input$file1)
-      req(input$file2)
-      # message(si1()$packages)
-      sid <- compare_si(si1(), si2())
-      message(input$file1$datapath)
-      # message(dim(si1()$packages))
-      rvs$sid <- sid
+      # req(input$file1)
+      # req(input$file2)
+      # # message(si1()$packages)
+      # sid <- compare_si(si1(), si2())
+      # message(input$file1$datapath)
+      # # message(dim(si1()$packages))
+      # rvs$sid <- sid
 
-      ####### s1e <- parse_si(input$s1editor, source ="editor")
-      ####### s2e <- parse_si(input$s2editor, source ="editor")
-      ####### message(dim(s1e$packages))
-      ####### sid <- compare_si(s1e, s2e)
-      ####### rvs$sid <- sid
+      s1e <- parse_si(input$s1editor, source ="editor")
+      s2e <- parse_si(input$s2editor, source ="editor")
+      message(dim(s1e$packages))
+      sid <- compare_si(s1e, s2e)
+      rvs$sid <- sid
 
 
     })
 
     output$si_compared <- DT::renderDataTable({
+      validate(
+        need(!is.null(rvs$sid), "Provide the two sessionInfo objects first")
+      )
       sid <- rvs$sid
 
       if(!input$display_equal)
         sid <- sid[sid$comparison != "equal", ]
-      DT::datatable(sid)
+
+      DT::datatable(sid) %>%
+        DT::formatStyle(
+          'comparison',
+          backgroundColor = DT::styleEqual(c("equal", "older", "newer", "Only in 1", "Only in 2"),
+                                           c("white", "#E41A1C", "#377EB8", "lightgrey", "lightgrey")))
     })
 
   }

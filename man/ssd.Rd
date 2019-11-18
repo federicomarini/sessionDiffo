@@ -2,16 +2,18 @@
 % Please edit documentation in R/ssd.R
 \name{ssd}
 \alias{ssd}
-\title{TODO}
+\title{Shiny up sessionDiffo}
 \usage{
 ssd()
 }
 \value{
-TODO
+A Shiny app
 }
 \description{
-TODO
+A mini Shiny app for comparing \code{sessionInfo} outputs
 }
 \examples{
-# TODO
+if(interactive())
+  ssd()
+# and later upload the files/copy-paste the output in the editors directly
 }

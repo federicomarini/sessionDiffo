@@ -19,7 +19,8 @@ Imports:
     utils,
     DT,
     shiny,
-    shinyAce
+    shinyAce,
+    magrittr
 Suggests: 
     knitr,
     rmarkdown
