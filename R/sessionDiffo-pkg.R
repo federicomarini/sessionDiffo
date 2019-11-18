@@ -1,4 +1,4 @@
-#' sessionDiffo
+#' `sessionDiffo`
 #'
 #' @importFrom car recode
 #' @importFrom utils compareVersion

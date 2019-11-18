@@ -2,21 +2,33 @@
 % Please edit documentation in R/parse_sessionInfo.R
 \name{parse_si}
 \alias{parse_si}
-\title{TODO}
+\title{Parse a \code{sessionInfo} object}
 \usage{
 parse_si(si, source = "filename")
 }
 \arguments{
-\item{si}{TODO}
+\item{si}{Character string, with either the path to the plain text file
+containing the output (if \code{source} is equal to "filename"), or the content
+itself (if \code{source} is "editor")}
 
-\item{source}{TODO}
+\item{source}{Character string, indicating the format in which the object is
+provided}
 }
 \value{
-TODO
+A list with two elements:
+\itemize{
+\item a character string, \code{Rversion}
+\item a data frame (\code{packages}) with the attached packages and their versions
+}
 }
 \description{
-TODO
+Parse a \code{sessionInfo} object
+}
+\details{
+The output of \code{sessionInfo()} should start with \verb{> sessionInfo()},
+so be sure to copy that part as well
 }
 \examples{
-# TODO
+si1_output <- system.file("extdata", "si1.txt", package = "sessionDiffo")
+si1 <- parse_si(si1_output)
 }
