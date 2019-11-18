@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>TODO — parse_si • sessionDiffo</title>
+<title>Parse a <code>sessionInfo</code> object — parse_si • sessionDiffo</title>
 
 
 <!-- jquery -->
@@ -35,8 +35,8 @@
 
 
 
-<meta property="og:title" content="TODO — parse_si" />
-<meta property="og:description" content="TODO" />
+<meta property="og:title" content="Parse a <code>sessionInfo</code> object — parse_si" />
+<meta property="og:description" content="Parse a sessionInfo object" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -120,13 +120,13 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>TODO</h1>
+    <h1>Parse a <code>sessionInfo</code> object</h1>
     <small class="dont-index">Source: <a href='https://github.com/federicomarini/sessionDiffo/blob/master/R/parse_sessionInfo.R'><code>R/parse_sessionInfo.R</code></a></small>
     <div class="hidden name"><code>parse_si.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>TODO</p>
+    <p>Parse a <code>sessionInfo</code> object</p>
     </div>
 
     <pre class="usage"><span class='fu'>parse_si</span>(<span class='no'>si</span>, <span class='kw'>source</span> <span class='kw'>=</span> <span class='st'>"filename"</span>)</pre>
@@ -136,27 +136,39 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>si</th>
-      <td><p>TODO</p></td>
+      <td><p>Character string, with either the path to the plain text file
+containing the output (if <code>source</code> is equal to "filename"), or the content
+itself (if <code>source</code> is "editor")</p></td>
     </tr>
     <tr>
       <th>source</th>
-      <td><p>TODO</p></td>
+      <td><p>Character string, indicating the format in which the object is
+provided</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>TODO</p>
+    <p>A list with two elements:</p><ul>
+<li><p>a character string, <code>Rversion</code></p></li>
+<li><p>a data frame (<code>packages</code>) with the attached packages and their versions</p></li>
+</ul>
+
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>The output of <code><a href='https://rdrr.io/r/utils/sessionInfo.html'>sessionInfo()</a></code> should start with <code>&gt; sessionInfo()</code>,
+so be sure to copy that part as well</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'># TODO
-</div></pre>
+    <pre class="examples"><div class='input'><span class='no'>si1_output</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata"</span>, <span class='st'>"si1.txt"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"sessionDiffo"</span>)
+<span class='no'>si1</span> <span class='kw'>&lt;-</span> <span class='fu'>parse_si</span>(<span class='no'>si1_output</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       <li><a href="#value">Value</a></li>
+      <li><a href="#details">Details</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>
 
