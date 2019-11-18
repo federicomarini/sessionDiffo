@@ -14,9 +14,25 @@ knitr::opts_chunk$set(
 )
 ```
 
+# How?
+
 ```{r setup}
 library(sessionDiffo)
 ```
+
+# Why?
+
+Ever encountered a situation where the configuration of two systems is different?
+
+Examples:
+
+- a newer package introduced changes in the functionality, and you have different setups on different machines. You might want to pinpoint what is different
+
+- debugging/reporting an issue: you encounter a bug, or someone reports it to you, and you want to compare the full set of packages that are available in the two different setups
+
+# What
+
+## From the command line
 
 ```{r}
 si1_output <- system.file("extdata", "si1.txt", package = "sessionDiffo")
@@ -30,7 +46,19 @@ comparison_df <- compare_si(si1, si2)
 knitr::kable(comparison_df)
 ```
 
+## With `ssd`
+
+... standing for `ShinySessionDiffo`
+
+```{r}
+if(interactive())
+  ssd()
+```
+
+
 # Session info {-}
+
+Ok, this time it is only one. So here there is no need of `sessionDiffo`
 
 ```{r}
 sessionInfo()
