@@ -1,0 +1,38 @@
+---
+title: "Using `sessionDiffo`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Using_sessionDiffo}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(sessionDiffo)
+```
+
+```{r}
+si1_output <- system.file("extdata", "si1.txt", package = "sessionDiffo")
+si2_output <- system.file("extdata", "si2.txt", package = "sessionDiffo")
+
+si1 <- parse_si(si1_output)
+si2 <- parse_si(si2_output)
+
+comparison_df <- compare_si(si1, si2)
+
+knitr::kable(comparison_df)
+```
+
+# Session info {-}
+
+```{r}
+sessionInfo()
+```
+
