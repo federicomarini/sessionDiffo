@@ -2,13 +2,16 @@
 % Please edit documentation in R/ssd.R
 \name{ssd}
 \alias{ssd}
-\title{Title}
+\title{TODO}
 \usage{
 ssd()
 }
 \value{
-
+TODO
 }
 \description{
-Title
+TODO
+}
+\examples{
+# TODO
 }

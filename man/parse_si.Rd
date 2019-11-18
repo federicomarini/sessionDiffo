@@ -4,10 +4,12 @@
 \alias{parse_si}
 \title{TODO}
 \usage{
-parse_si(si)
+parse_si(si, source = "filename")
 }
 \arguments{
 \item{si}{TODO}
+
+\item{source}{TODO}
 }
 \value{
 TODO

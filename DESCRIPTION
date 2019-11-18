@@ -16,7 +16,10 @@ Encoding: UTF-8
 LazyData: true
 Imports:
     car,
-    utils
+    utils,
+    DT,
+    shiny,
+    shinyAce
 Suggests: 
     knitr,
     rmarkdown

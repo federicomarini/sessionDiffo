@@ -1,9 +1,12 @@
-#' Title
+#' TODO
 #'
-#' @return
+#' TODO
+#'
+#' @return TODO
 #' @export
 #'
 #' @examples
+#' # TODO
 ssd <- function() {
 
   ssd_ui <- fluidPage(
