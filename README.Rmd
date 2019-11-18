@@ -2,7 +2,6 @@
 output: github_document
 ---
 
-  
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 ```{r, include = FALSE}
@@ -17,7 +16,7 @@ knitr::opts_chunk$set(
 # sessionDiffo
 
 <!-- badges: start -->
-  [![Travis build status](https://travis-ci.org/federicomarini/sessionDiffo.svg?branch=master)](https://travis-ci.org/federicomarini/sessionDiffo)
+![Travis build status](https://travis-ci.org/federicomarini/sessionDiffo.svg?branch=master)
 <!-- badges: end -->
 
 

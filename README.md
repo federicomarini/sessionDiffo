@@ -5,8 +5,8 @@
 
 <!-- badges: start -->
 
-[![Travis build
-status](https://travis-ci.org/federicomarini/sessionDiffo.svg?branch=master)](https://travis-ci.org/federicomarini/sessionDiffo)
+![Travis build
+status](https://travis-ci.org/federicomarini/sessionDiffo.svg?branch=master)
 <!-- badges: end -->
 
 The goal of sessionDiffo is to …
