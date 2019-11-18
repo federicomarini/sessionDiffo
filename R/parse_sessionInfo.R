@@ -12,7 +12,7 @@
 parse_si <- function(si, source = "filename") {
   if(source == "filename") {
     x <- readLines(si)
-  } else if(source == "editor")
+  } else if(source == "editor") {
   # x <- paste0(si,collapse="\n")
     x <- strsplit(si, split="\n")[[1]]
   }
