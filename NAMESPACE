@@ -2,5 +2,6 @@
 
 export(compare_si)
 export(parse_si)
+export(ssd)
 importFrom(car,recode)
 importFrom(utils,compareVersion)

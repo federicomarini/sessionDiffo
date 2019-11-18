@@ -9,8 +9,13 @@
 #'
 #' @examples
 #' # TODO
-parse_si <- function(si) {
-  x <- readLines(si)
+parse_si <- function(si, source = "filename") {
+  if(source == "filename") {
+    x <- readLines(si)
+  } else if(source == "editor")
+  # x <- paste0(si,collapse="\n")
+    x <- strsplit(si, split="\n")[[1]]
+  }
 
   # TODO:
   # if it does not start with sessionInfo(), warn?
