@@ -3,7 +3,7 @@
 \docType{package}
 \name{sessionDiffo-pkg}
 \alias{sessionDiffo-pkg}
-\title{sessionDiffo}
+\title{\code{sessionDiffo}}
 \description{
-sessionDiffo
+\code{sessionDiffo}
 }
