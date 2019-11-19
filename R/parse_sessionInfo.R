@@ -22,11 +22,11 @@
 parse_si <- function(si, source = "filename") {
 
   source <- match.arg(source, c("filename", "editor"))
-  if(source == "filename") {
+  if (source == "filename") {
     x <- readLines(si)
-  } else if(source == "editor") {
+  } else if (source == "editor") {
   # x <- paste0(si,collapse="\n")
-    x <- strsplit(si, split="\n")[[1]]
+    x <- strsplit(si, split = "\n|\r")[[1]]
   }
 
   # TODO:
@@ -35,7 +35,33 @@ parse_si <- function(si, source = "filename") {
   # system/platform to be included?
 
   sil <- list()
+
+  if (any(grepl("other attached packages", x))) {
+    print("yes")
+    res <- .parse_si_utils(x)
+  } else {
+    print("no")
+    res <- .parse_si_tv(x)
+  }
+
+  pkgs_df <- data.frame(
+    package = unlist(lapply(strsplit(res$all_packages,split = "_"), function(arg) arg[[1]])),
+    version = unlist(lapply(strsplit(res$all_packages,split = "_"), function(arg) arg[[2]])),
+    stringsAsFactors = FALSE
+  )
+
+  sil[["Rversion"]] <- res$r_version
+  sil[["packages"]] <- pkgs_df
+
+  return(sil)
+
+}
+
+.parse_si_utils <- function(x) {
   idx1 <- which(x == "> sessionInfo()")
+  if (length(idx1) == 0) {
+    idx1 <- 0
+  }
   idx2 <- which(x == "other attached packages:")
   idx3 <- which(x == "loaded via a namespace (and not attached):")
   all_packages <- c()
@@ -48,18 +74,26 @@ parse_si <- function(si, source = "filename") {
                       value = TRUE, invert = TRUE)
                }))))
   }
+  list(all_packages = all_packages, r_version = x[idx1 + 1])
+}
 
-  pkgs_df <- data.frame(
-    package = unlist(lapply(strsplit(all_packages,split = "_"), function(arg) arg[[1]])),
-    version = unlist(lapply(strsplit(all_packages,split = "_"), function(arg) arg[[2]])),
-    stringsAsFactors = FALSE
-  )
-
-  sil[["Rversion"]] <- x[idx1 + 1]
-  sil[["packages"]] <- pkgs_df
-
-  return(sil)
-
+.parse_si_tv <- function(x) {
+  print(x)
+  idx1 <- grep("Session info", x)
+  idx2 <- grep("Packages", x)
+  idx3 <- which(x == "")
+  idx3 <- min(idx3[idx3 > idx2])
+  all_packages <- c()
+  if (length(idx1) != 0 & length(idx2) != 0 & length(idx3) != 0) {
+    all_packages <-
+      unique(c(all_packages,
+               # x[idx1 + 1],
+               do.call(c, lapply((idx2 + 2):(idx3 - 1), function(i) {
+                 a <- setdiff(setdiff(setdiff(strsplit(x[i], " ")[[1]], " "), ""), "*")
+                 paste(a[1], a[2], sep = "_")
+               }))))
+  }
+  list(all_packages = all_packages, r_version = gsub(" version  ", "", x[idx1 + 2]))
 }
 
 #' Compare two `sessionInfo` objects
