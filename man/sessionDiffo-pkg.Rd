@@ -5,5 +5,6 @@
 \alias{sessionDiffo-pkg}
 \title{\code{sessionDiffo}}
 \description{
-\code{sessionDiffo}
+A tiny utility to compare (\code{diff}) the output of two different Session Info
+(via \code{sessionInfo()}, \code{sessioninfo::session_info()}) calls
 }

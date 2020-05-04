@@ -1,5 +1,8 @@
 #' `sessionDiffo`
 #'
+#' A tiny utility to compare (`diff`) the output of two different Session Info
+#' (via `sessionInfo()`, `sessioninfo::session_info()`) calls
+#'
 #' @importFrom car recode
 #' @importFrom utils compareVersion
 #' @importFrom DT datatable dataTableOutput renderDataTable formatStyle

@@ -33,4 +33,4 @@ Suggests:
 VignetteBuilder: knitr
 URL: https://github.com/federicomarini/sessionDiffo
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.0.0
+RoxygenNote: 7.1.0
